@@ -16,3 +16,4 @@ namespace NLayer.Core
         public ICollection<Product> Products { get; set; }
     }
 }
+ 
