@@ -2,6 +2,7 @@
 using NLayer.Core;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -26,6 +27,18 @@ namespace NLayer.Repository
 
             //tekil olarak modelbuilder dosyalarını dahil etme
             //modelBuilder.ApplyConfiguration(new Configurations.CategoryConfiguration);
+
+
+            //dbcontext icerisnden seed yapma 
+            modelBuilder.Entity<ProductFeature>().HasData(
+                new ProductFeature
+                {
+                    Color = Color.Red,
+                    Id = 1,
+                    Height = 150,
+                    ProductId = 1,
+                    Width = 200
+                });
         }
         
     }
