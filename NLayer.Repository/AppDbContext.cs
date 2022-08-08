@@ -27,6 +27,7 @@ namespace NLayer.Repository
             //tekil olarak modelbuilder dosyalarını dahil etme
             //modelBuilder.ApplyConfiguration(new Configurations.CategoryConfiguration);
         }
+        
     }
 
     
