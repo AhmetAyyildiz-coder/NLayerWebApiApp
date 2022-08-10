@@ -13,9 +13,10 @@ namespace NLayer.Repository.Repositories
     {
         //Db islemleri icin repo katmanında dbcontext bulunur. 
         //core katmanından kalıtım aldığı için entitiler de vardır bu sayede en temel crud işlemlerini yaparız.
-       
+
         //bunu protected yapmamızın sebebi ileride extra metotlar için kullanabiliriz. Miras alınarak
         readonly protected AppDbContext _context;
+        //Her seferinde _context.set<T> yapmamak için bir dbset olusturuk.
         private readonly DbSet<T> _dbSet;
         public GenericRepository(AppDbContext context)
         {
@@ -50,13 +51,16 @@ namespace NLayer.Repository.Repositories
 
         public void Remove(T entity)
         {
-            _context.Entry(entity).State = EntityState.Deleted;
+            _dbSet.Remove(entity);
             //ikisi de aynı işe yarıyor.
-            //_dbSet.Remove(entity);
+            //_context.Entry(entity).State = EntityState.Deleted;
+
+            //cunku remove yaptıgımızda aslında sadece o entity'nin state'ini degistirir.
         }
 
         public void RemoveRange(IEnumerable<T> entities)
         {
+            //Foreach ile entity'ler içerisinde dönüp her entiti'nin state özelliğini delete yapıyor.
             _dbSet.RemoveRange(entities);
         }
 
