@@ -9,7 +9,7 @@ namespace NLayer.Core
     public class ProductFeature
     {
         public int Id{ get; set; }
-        public System.Drawing.Color Color { get; set; }
+        public String Color { get; set; }
         public int Height { get; set; }
         public int Width { get; set; }
         //navigationProperty

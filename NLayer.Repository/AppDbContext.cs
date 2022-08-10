@@ -33,7 +33,7 @@ namespace NLayer.Repository
             modelBuilder.Entity<ProductFeature>().HasData(
                 new ProductFeature
                 {
-                    Color = Color.Red,
+                    Color = "Red",
                     Id = 1,
                     Height = 150,
                     ProductId = 1,

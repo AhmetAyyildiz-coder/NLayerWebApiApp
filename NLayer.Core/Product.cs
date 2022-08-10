@@ -12,7 +12,7 @@ namespace NLayer.Core
     {
         public string Name { get; set; }    
         public int Stock { get; set; }
-        public decimal Price { get; set; }
+        public int Price { get; set; }
 
         //ef core bu property'yi otomatik olarak ClassName+Id olarak okuyor ve bunu 
         //foreign key olarak belirliyor.
@@ -23,7 +23,7 @@ namespace NLayer.Core
         //[ForeignKey("CategoryId")] //Bu sekilde kullanıma aslında gerek yok , ama gerekirse yazarsın
         public Category Category { get; set; }
 
-        public ProductFeature? ProductFeature { get; set; }
+        public ProductFeature ProductFeature { get; set; }
 
 
     }

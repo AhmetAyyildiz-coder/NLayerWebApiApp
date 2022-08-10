@@ -18,7 +18,7 @@ namespace NLayer.Repository.Configurations
             builder.Property(x => x.Name).IsRequired().HasMaxLength(200);
             builder.Property(x => x.Stock).IsRequired();
             //parasal deger max 18 karakter ve virgülden sonra 2 karakter olabilir.
-            builder.Property(x => x.Price).IsRequired().HasColumnType("decimal(18,2");
+            //builder.Property(x => x.Price).IsRequired().HasColumnType("decimal(18,2)");
 
             //her kategorinin birden fazla ürünü olabilir diyoruz.
             //ve buradaki anahtar ilişkisini belirtiyoruz

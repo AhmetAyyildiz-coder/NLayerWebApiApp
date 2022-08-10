@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NLayer.Repository.Repositories
 {
-    internal class GenericRepository<T> : IGenericRepostiory<T> where T : class
+    public class GenericRepository<T> : IGenericRepostiory<T> where T : class
     {
         //Db islemleri icin repo katmanında dbcontext bulunur. 
         //core katmanından kalıtım aldığı için entitiler de vardır bu sayede en temel crud işlemlerini yaparız.

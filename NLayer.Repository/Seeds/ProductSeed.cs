@@ -19,7 +19,9 @@ namespace NLayer.Repository.Seeds
                 CategoryId = 1,
                 Price = 200,
                 Stock = 50
-                ,Name="Pencil 1 "
+                ,
+                Name = "Pencil 1 ",
+                CreatedDate = DateTime.Now
             }
             ,
             new Product()
@@ -29,16 +31,19 @@ namespace NLayer.Repository.Seeds
                 Price = 250,
                 Stock = 40
                 ,
-                Name = "Pencil 2 "
+                Name = "Pencil 2 ",
+                CreatedDate = DateTime.Now
             },
             new Product()
             {
                 Id = 3,
+                Name = "Pencil 3 ",
                 CategoryId = 1,
                 Price = 300,
                 Stock = 20
                 ,
-                Name = "Pencil 3 "
+                
+                CreatedDate = DateTime.Now
             },
             new Product()
             {
@@ -47,8 +52,8 @@ namespace NLayer.Repository.Seeds
                 Price = 160,
                 Stock = 20
                 ,
-                Name = "HomeWork Books"
-            });
+                Name = "HomeWork Books" , CreatedDate = DateTime.Now
+            }) ;
         }
     }
 }
