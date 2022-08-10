@@ -23,7 +23,7 @@ namespace NLayer.Core.Repositories
 
         //repo.GetAll(x=>x.id==5) dediğimizde memorideki datadan çeker veriyi.
         //ama tolist gibi metot ile çağırırsak bunu tekrar veritabanından sorgu çeker.
-        IQueryable<T> GetAll(Expression<Func<T,bool>> expression);
+        IQueryable<T> GetAll();
 
 
         Task AddAsync(T entity);

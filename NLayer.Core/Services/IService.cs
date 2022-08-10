@@ -18,9 +18,9 @@ namespace NLayer.Core.Services
 
 
        
-        IQueryable<T> GetAll(Expression<Func<T, bool>> expression);
+        Task<IEnumerable<T>> GetAll();
 
-        Task AddAsync(T entity);
+        Task<T> AddAsync(T entity);
 
         Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
 
@@ -28,7 +28,7 @@ namespace NLayer.Core.Services
 
         Task RemoveAsync(T entity);
 
-        Task AddRangeAsync(IEnumerable<T> entities);
+        Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities);
         Task RemoveRangeAsync(IEnumerable<T> entities);
     }
 }
