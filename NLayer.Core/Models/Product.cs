@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NLayer.Core
+namespace NLayer.Core.Models
 {
     //her product bir kategoriye bağlıdır. 
-    public class Product : BaseEntity 
+    public class Product : BaseEntity
     {
-        public string Name { get; set; }    
+        public string Name { get; set; }
         public int Stock { get; set; }
         public int Price { get; set; }
 

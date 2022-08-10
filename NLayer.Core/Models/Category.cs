@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NLayer.Core
+namespace NLayer.Core.Models
 {
     // her kategorinin birden fazla product'u vardır. 
     public class Category : BaseEntity
@@ -16,4 +16,3 @@ namespace NLayer.Core
         public ICollection<Product> Products { get; set; }
     }
 }
- 

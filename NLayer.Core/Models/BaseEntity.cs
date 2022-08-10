@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NLayer.Core
+namespace NLayer.Core.Models
 {
     /*Class abstract olarak işaretledik cünkü bu sınıftan nesne örnegi alınsın 
      * istemiyoruz.
@@ -15,6 +15,6 @@ namespace NLayer.Core
         [Key]
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
-        public DateTime UpdateDate { get; set; } 
+        public DateTime UpdateDate { get; set; }
     }
 }
