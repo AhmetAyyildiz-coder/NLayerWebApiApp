@@ -5,6 +5,8 @@ using NLayer.Core.UnitOfWorks;
 using NLayer.Repository;
 using NLayer.Repository.Repositories;
 using NLayer.Repository.UnitOfWorks;
+using NLayer.Services.Mapping;
+using NLayer.Services.Services;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +15,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepostiory<>), typeof(GenericRepository<>));
-//builder.Services.AddScoped(typeof(IService), typeof(Service))
+builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
+
+
+//automapper added
+builder.Services.AddAutoMapper(typeof(MapProfile));
+
+
 //db context eklenildi ve diðer katmanda olan dbcontext nesnemizi migrations yapýlýrken nasýl kullandýðýmýz
 //gösterildi.
 builder.Services.AddDbContext<NLayer.Repository.AppDbContext>(x =>
@@ -32,6 +40,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+
 
 var app = builder.Build();
 
