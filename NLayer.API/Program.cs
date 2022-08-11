@@ -16,8 +16,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepostiory<>), typeof(GenericRepository<>));
 builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
-
-
+builder.Services.AddScoped(typeof(IProductRepository),typeof(ProductRepository));
+builder.Services.AddScoped(typeof(IProductService), typeof(ProductService));
 //automapper added
 builder.Services.AddAutoMapper(typeof(MapProfile));
 

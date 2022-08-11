@@ -46,9 +46,10 @@ namespace NLayer.Services.Services
             return await _repostiory.AnyAsync(expression);
         }
 
-        public Task<IEnumerable<T>> GetAll()
+        public async  Task<IEnumerable<T>> GetAll()
         {
-            return (Task<IEnumerable<T>>)_repostiory.GetAll();
+            
+            return await _repostiory.GetAll().ToListAsync();
         }
 
         public Task<T> GetByIdAsync(int id)
