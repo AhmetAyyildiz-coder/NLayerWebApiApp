@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NLayer.API.Filters;
 using NLayer.Core.DTOs;
 using NLayer.Core.Models;
 using NLayer.Core.Services;
 
 namespace NLayer.API.Controllers
 {
+    [ValidateFilterAttribute]
     public class ProductController : CustomBaseController
     {//controller'lar sadece servisleri bilir. Kesinlikle repository'yi referans almazlar.
 
@@ -38,6 +40,8 @@ namespace NLayer.API.Controllers
             return CreateActionResult(CustomReponseDto<ProductDto>.Success(200, productDtos));
 
         }
+        /*Fluent validation'da eğer bu controller'a gelen productDto nesnesi 
+         validation'a takılırsa metodun içine girmiyor. Direkt return oluyor.*/
         [HttpPost()]
         public async Task<IActionResult> Save(ProductDto productDto)
         {

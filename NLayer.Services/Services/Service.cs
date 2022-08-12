@@ -26,6 +26,7 @@ namespace NLayer.Services.Services
 
         public async Task<T> AddAsync(T entity)
         {
+            
             await _repostiory.AddAsync(entity);
             await _unitOfWork.CommitAsync();
             /*Ef core tarafında add oldugu zaman eklenen entity parametre gelen entity ile yer değiştirir. 
