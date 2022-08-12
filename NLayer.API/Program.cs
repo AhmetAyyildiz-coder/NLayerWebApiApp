@@ -1,5 +1,7 @@
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NLayer.API.Filters;
 using NLayer.Core.Repositories;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWorks;
@@ -42,10 +44,21 @@ builder.Services.AddDbContext<NLayer.Repository.AppDbContext>(x =>
         });
 });
 
-
-
 //Fluent Validation Eklentisi
-builder.Services.AddControllers().AddFluentValidation(x=>x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidation>());
+#pragma warning disable CS0618 // Type or member is obsolete
+builder.Services.AddControllers(options =>
+//filter Eklenildi.
+{
+    options.Filters.Add(new ValidateFilterAttribute());
+}).
+AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidation>());
+
+//Bunu diyerek default olan filtrer mekanizmasýný devre dýþý býraktýk ve custom bizim yazdýðýmýz
+//filter mekanizmasý eklenildi.
+builder.Services.Configure<ApiBehaviorOptions>(opt => opt.SuppressModelStateInvalidFilter = true);
+
+
+#pragma warning restore CS0618 // Type or member is obsolete
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

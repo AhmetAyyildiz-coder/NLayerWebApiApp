@@ -8,7 +8,7 @@ using NLayer.Core.Services;
 
 namespace NLayer.API.Controllers
 {
-    [ValidateFilterAttribute]
+    
     public class ProductController : CustomBaseController
     {//controller'lar sadece servisleri bilir. Kesinlikle repository'yi referans almazlar.
 
