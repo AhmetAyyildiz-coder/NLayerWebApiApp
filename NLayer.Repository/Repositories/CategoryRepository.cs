@@ -1,4 +1,5 @@
-﻿using NLayer.Core.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using NLayer.Core.Models;
 using NLayer.Core.Repositories;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,9 @@ namespace NLayer.Repository.Repositories
         {
         }
 
-        public Task<Category> getSingleCategoryByWithProductsAsync(int categoryId)
+        public async Task<Category> GetSingleCategoryByIdWithProductsAsync(int categoryId)
         {
-            throw new NotImplementedException();
+            return await _context.Categories.Include(x => x.Products).Where(x => x.Id == categoryId).SingleOrDefaultAsync();
         }
     }
 }
