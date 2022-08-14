@@ -58,8 +58,8 @@ public class RepoServiceModule :Module
 
 
         //Added Cache structure
-        //builder.RegisterType<ProductServiceWithCaching>().As<IProductService>();
 
+        builder.RegisterType<ProductServiceWithCaching>().As<IProductService>();
 
     }
 }

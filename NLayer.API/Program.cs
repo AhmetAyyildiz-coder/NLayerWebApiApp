@@ -34,7 +34,9 @@ var builder = WebApplication.CreateBuilder(args);
 // builder.Services.AddScoped(typeof(ICategoryRepository), typeof(CategoryRepository));
 // builder.Services.AddScoped(typeof(ICategoryService), typeof(CategoryService));
 
-builder.Services.AddScoped(typeof(IProductService), typeof(ProductServiceWithCaching));
+
+//cached added
+//builder.Services.AddScoped(typeof(IProductService), typeof(ProductServiceWithCaching));
 
 //automapper added
 builder.Services.AddAutoMapper(typeof(MapProfile));
@@ -76,7 +78,7 @@ builder.Services.Configure<ApiBehaviorOptions>(opt => opt.SuppressModelStateInva
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddMemoryCache();
 
 var app = builder.Build();
 
