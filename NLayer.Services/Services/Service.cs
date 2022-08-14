@@ -59,7 +59,7 @@ namespace NLayer.Services.Services
             var hasProduct = await _repostiory.GetByIdAsync(id);
             if (hasProduct == null)
             {
-                 throw new NotFoundException($"{typeof(T).Name} not found");
+                 throw new NotFoundException($"{typeof(T).Name} {id} not found");
             }
             return hasProduct;
         }

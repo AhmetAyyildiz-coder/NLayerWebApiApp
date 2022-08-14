@@ -33,6 +33,8 @@ builder.Services.AddScoped(typeof(ICategoryService), typeof(CategoryService));
 //automapper added
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
+//added notFoundFilter
+builder.Services.AddScoped(typeof(NotFoundFilter<>));
 
 //db context eklenildi ve diðer katmanda olan dbcontext nesnemizi migrations yapýlýrken nasýl kullandýðýmýz
 //gösterildi.
