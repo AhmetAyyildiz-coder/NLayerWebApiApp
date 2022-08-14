@@ -6,6 +6,10 @@ using NLayer.Core.Services;
 
 namespace NLayer.API.Filters;
 
+/// <summary>
+/// Check for id my all entites
+/// </summary>
+/// <typeparam name="T"></typeparam>
 public class NotFoundFilter<T> :IAsyncActionFilter where T :BaseEntity
 {
     private readonly IService<T> _service;
