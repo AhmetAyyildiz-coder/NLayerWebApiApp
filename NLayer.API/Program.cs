@@ -13,22 +13,25 @@ using NLayer.Services.Mapping;
 using NLayer.Services.Services;
 using NLayer.Services.Validations;
 using System.Reflection;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using NLayer.API.Moduls;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped(typeof(IGenericRepostiory<>), typeof(GenericRepository<>));
-builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
-
-//product service instance
-builder.Services.AddScoped(typeof(IProductRepository),typeof(ProductRepository));
-builder.Services.AddScoped(typeof(IProductService), typeof(ProductService));
-
-//Category service Ýnstance
-builder.Services.AddScoped(typeof(ICategoryRepository), typeof(CategoryRepository));
-builder.Services.AddScoped(typeof(ICategoryService), typeof(CategoryService));
+//
+// builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+// builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+// builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
+//
+// //product service instance
+// builder.Services.AddScoped(typeof(IProductRepository),typeof(ProductRepository));
+// builder.Services.AddScoped(typeof(IProductService), typeof(ProductService));
+//
+// //Category service Ýnstance
+// builder.Services.AddScoped(typeof(ICategoryRepository), typeof(CategoryRepository));
+// builder.Services.AddScoped(typeof(ICategoryService), typeof(CategoryService));
 
 //automapper added
 builder.Services.AddAutoMapper(typeof(MapProfile));
@@ -46,6 +49,11 @@ builder.Services.AddDbContext<NLayer.Repository.AppDbContext>(x =>
             opt.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
         });
 });
+
+
+//added autofacService
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(config => config.RegisterModule(new RepoServiceModule()));
 
 //Fluent Validation Eklentisi
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -65,8 +73,6 @@ builder.Services.Configure<ApiBehaviorOptions>(opt => opt.SuppressModelStateInva
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-
 
 
 var app = builder.Build();

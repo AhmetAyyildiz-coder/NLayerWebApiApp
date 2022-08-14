@@ -11,7 +11,7 @@ namespace NLayer.Core.Repositories
     /// Temel bütün entity'lerde kullanıcağımız crud işlemlerimizin bulunduğu interface'dir.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IGenericRepostiory<T> where T : class
+    public interface IGenericRepository<T> where T : class
     {
         Task<T> GetByIdAsync(int id);
         //IQuarebla<T>  => repostitory.Where(x=>x.id ==5).toList() gibi imkanlar sağlar bize.

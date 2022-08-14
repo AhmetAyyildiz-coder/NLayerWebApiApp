@@ -14,10 +14,10 @@ namespace NLayer.Services.Services
 {
     public class Service<T> : IService<T> where T : class
     {
-        private readonly IGenericRepostiory<T> _repostiory;
+        private readonly IGenericRepository<T> _repostiory;
         private readonly IUnitOfWork _unitOfWork;
 
-        public Service(IUnitOfWork unitOfWork, IGenericRepostiory<T> repostiory)
+        public Service(IUnitOfWork unitOfWork, IGenericRepository<T> repostiory)
         {
             this._unitOfWork = unitOfWork;
             _repostiory = repostiory;
