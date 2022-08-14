@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Autofac;
+using Nlayer.Caching;
 using NLayer.Core.Repositories;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWorks;
@@ -56,6 +57,8 @@ public class RepoServiceModule :Module
         //instancePerDependency => Transient LifeTime
 
 
+        //Added Cache structure
+        //builder.RegisterType<ProductServiceWithCaching>().As<IProductService>();
 
 
     }

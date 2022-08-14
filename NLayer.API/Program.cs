@@ -16,6 +16,7 @@ using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using NLayer.API.Moduls;
+using Nlayer.Caching;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +33,8 @@ var builder = WebApplication.CreateBuilder(args);
 // //Category service Ýnstance
 // builder.Services.AddScoped(typeof(ICategoryRepository), typeof(CategoryRepository));
 // builder.Services.AddScoped(typeof(ICategoryService), typeof(CategoryService));
+
+builder.Services.AddScoped(typeof(IProductService), typeof(ProductServiceWithCaching));
 
 //automapper added
 builder.Services.AddAutoMapper(typeof(MapProfile));

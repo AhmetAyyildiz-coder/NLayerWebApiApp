@@ -26,24 +26,23 @@ public class ProductServiceWithCaching :IProductService
         _repository = repository;
         _unitOfWork = unitOfWork;
 
-        if (memoryCache.TryGetValue(CacheProductKey, out _))
-        {_memoryCache.Set(CacheProductKey, repository.GetAll().ToList());
-            
+        if (!_memoryCache.TryGetValue(CacheProductKey, out _))
+        {
+            _memoryCache.Set(CacheProductKey, _repository.GetProductsWithCategory().Result);
         }
+
     }
 
     public Task<Product> GetByIdAsync(int id)
     {
-        
-        var productVal = Task.FromResult(_memoryCache.
-            Get<List<Product>>(CacheProductKey).
-            FirstOrDefault(x => x.Id == id));
-        if (productVal == null)
+        var product = _memoryCache.Get<List<Product>>(CacheProductKey).FirstOrDefault(x => x.Id == id);
+
+        if (product == null)
         {
-            throw new NotFoundException($"{typeof(Product).Name} ({id}) not found");
+            throw new NotFoundException($"{typeof(Product).Name}({id}) not found");
         }
 
-        return Task.FromResult(productVal).Result;
+        return Task.FromResult(product);
     }
 
     public IQueryable<Product> Where(Expression<Func<Product, bool>> expression)
@@ -56,7 +55,8 @@ public class ProductServiceWithCaching :IProductService
 
     public Task<IEnumerable<Product>> GetAll()
     {
-        return Task.FromResult(_memoryCache.Get<IEnumerable<Product>>(CacheProductKey));
+        var products = _memoryCache.Get<IEnumerable<Product>>(CacheProductKey);
+        return Task.FromResult(products);
     }
 
     public async Task<Product> AddAsync(Product entity)
